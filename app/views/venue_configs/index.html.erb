@@ -1,0 +1,32 @@
+<h1>Listing venue_configs</h1>
+
+<table>
+  <tr>
+    <th>Locale</th>
+    <th>Venue</th>
+    <th>Date format</th>
+    <th>Home url</th>
+    <th>Schedule url</th>
+    <th>Checklist url</th>
+    <th>Iframe url</th>
+  </tr>
+
+<% @venue_configs.each do |venue_config| %>
+  <tr>
+    <td><%=h venue_config.locale_id %></td>
+    <td><%=h venue_config.venue_id %></td>
+    <td><%=h venue_config.date_format %></td>
+    <td><%=h venue_config.home_url %></td>
+    <td><%=h venue_config.schedule_url %></td>
+    <td><%=h venue_config.checklist_url %></td>
+    <td><%=h venue_config.iframe_url %></td>
+    <td><%= link_to 'Show', venue_config_path(venue_config.key) %></td>
+    <td><%= link_to 'Edit', edit_venue_config_path(venue_config.key) %></td>
+    <td><%= link_to 'Destroy', venue_config_path(venue_config.key), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New venue_config', new_venue_config_path %>

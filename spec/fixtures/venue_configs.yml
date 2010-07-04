@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  locale_id: 1
+  venue_id: 1
+  date_format: MyString
+  home_url: MyString
+  schedule_url: MyString
+  checklist_url: MyString
+  iframe_url: MyString
+
+two:
+  locale_id: 1
+  venue_id: 1
+  date_format: MyString
+  home_url: MyString
+  schedule_url: MyString
+  checklist_url: MyString
+  iframe_url: MyString

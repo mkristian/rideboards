@@ -1,0 +1,33 @@
+<p>
+  <b>Location:</b>
+  <%=h @listing.location %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @listing.email %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @listing.name %>
+</p>
+
+<p>
+  <b>Ridedate:</b>
+  <%=h @listing.ridedate %>
+</p>
+
+<p>
+  <b>Driver:</b>
+  <%=h @listing.driver %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%=h @listing.password %>
+</p>
+
+
+<%= link_to 'Edit', edit_listing_path(@listing.key) %> |
+<%= link_to 'Back', listings_path %>

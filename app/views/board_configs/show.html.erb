@@ -1,0 +1,23 @@
+<p>
+  <b>Board:</b>
+  <%=h @board_config.board_id %>
+</p>
+
+<p>
+  <b>Locale:</b>
+  <%=h @board_config.locale_id %>
+</p>
+
+<p>
+  <b>Map url:</b>
+  <%=h @board_config.map_url %>
+</p>
+
+<p>
+  <b>Directions url:</b>
+  <%=h @board_config.directions_url %>
+</p>
+
+
+<%= link_to 'Edit', edit_board_config_path(@board_config.key) %> |
+<%= link_to 'Back', board_configs_path %>

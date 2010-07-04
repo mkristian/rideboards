@@ -1,0 +1,26 @@
+<h1>Listing board_configs</h1>
+
+<table>
+  <tr>
+    <th>Board</th>
+    <th>Locale</th>
+    <th>Map url</th>
+    <th>Directions url</th>
+  </tr>
+
+<% @board_configs.each do |board_config| %>
+  <tr>
+    <td><%=h board_config.board_id %></td>
+    <td><%=h board_config.locale_id %></td>
+    <td><%=h board_config.map_url %></td>
+    <td><%=h board_config.directions_url %></td>
+    <td><%= link_to 'Show', board_config_path(board_config.key) %></td>
+    <td><%= link_to 'Edit', edit_board_config_path(board_config.key) %></td>
+    <td><%= link_to 'Destroy', board_config_path(board_config.key), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New board_config', new_board_config_path %>

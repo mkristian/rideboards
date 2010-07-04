@@ -1,0 +1,28 @@
+<p>
+  <b>Fullname:</b>
+  <%=h @venue.fullname %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @venue.email %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%=h @venue.password %>
+</p>
+
+<p>
+  <b>Bcc:</b>
+  <%=h @venue.bcc %>
+</p>
+
+<p>
+  <b>Enabled:</b>
+  <%=h @venue.enabled %>
+</p>
+
+
+<%= link_to 'Edit', edit_venue_path(@venue.key) %> |
+<%= link_to 'Back', venues_path %>

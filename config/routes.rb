@@ -1,4 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :listings
+
+  map.resources :boards
+
+  map.resources :board_configs
+
+  map.resources :venue_configs
+
+  map.resources :venues
+
   map.resources :audits
 
   map.resource :authentication

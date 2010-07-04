@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  location: MyString
+  email: MyString
+  name: MyString
+  ridedate: 2010-07-05
+  driver: false
+  password: MyString
+
+two:
+  location: MyString
+  email: MyString
+  name: MyString
+  ridedate: 2010-07-05
+  driver: false
+  password: MyString

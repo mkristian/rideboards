@@ -1,0 +1,28 @@
+<h1>Editing board_config</h1>
+
+<% form_for(:board_config, :url => board_config_path(@board_config.key), :html => {:method => :put}) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :board_id %><br />
+    <%= f.text_field :board_id %>
+  </p>
+  <p>
+    <%= f.label :locale_id %><br />
+    <%= f.text_field :locale_id %>
+  </p>
+  <p>
+    <%= f.label :map_url %><br />
+    <%= f.text_field :map_url %>
+  </p>
+  <p>
+    <%= f.label :directions_url %><br />
+    <%= f.text_field :directions_url %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', board_config_path(@board_config.key) %> |
+<%= link_to 'Back', board_configs_path %>

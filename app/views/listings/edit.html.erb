@@ -1,0 +1,36 @@
+<h1>Editing listing</h1>
+
+<% form_for(:listing, :url => listing_path(@listing.key), :html => {:method => :put}) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :ridedate %><br />
+    <%= f.date_select :ridedate %>
+  </p>
+  <p>
+    <%= f.label :driver %><br />
+    <%= f.check_box :driver %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', listing_path(@listing.key) %> |
+<%= link_to 'Back', listings_path %>

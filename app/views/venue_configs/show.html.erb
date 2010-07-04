@@ -1,0 +1,38 @@
+<p>
+  <b>Locale:</b>
+  <%=h @venue_config.locale_id %>
+</p>
+
+<p>
+  <b>Venue:</b>
+  <%=h @venue_config.venue_id %>
+</p>
+
+<p>
+  <b>Date format:</b>
+  <%=h @venue_config.date_format %>
+</p>
+
+<p>
+  <b>Home url:</b>
+  <%=h @venue_config.home_url %>
+</p>
+
+<p>
+  <b>Schedule url:</b>
+  <%=h @venue_config.schedule_url %>
+</p>
+
+<p>
+  <b>Checklist url:</b>
+  <%=h @venue_config.checklist_url %>
+</p>
+
+<p>
+  <b>Iframe url:</b>
+  <%=h @venue_config.iframe_url %>
+</p>
+
+
+<%= link_to 'Edit', edit_venue_config_path(@venue_config.key) %> |
+<%= link_to 'Back', venue_configs_path %>

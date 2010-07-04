@@ -1,0 +1,28 @@
+<h1>Listing venues</h1>
+
+<table>
+  <tr>
+    <th>Fullname</th>
+    <th>Email</th>
+    <th>Password</th>
+    <th>Bcc</th>
+    <th>Enabled</th>
+  </tr>
+
+<% @venues.each do |venue| %>
+  <tr>
+    <td><%=h venue.fullname %></td>
+    <td><%=h venue.email %></td>
+    <td><%=h venue.password %></td>
+    <td><%=h venue.bcc %></td>
+    <td><%=h venue.enabled %></td>
+    <td><%= link_to 'Show', venue_path(venue.key) %></td>
+    <td><%= link_to 'Edit', edit_venue_path(venue.key) %></td>
+    <td><%= link_to 'Destroy', venue_path(venue.key), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New venue', new_venue_path %>
