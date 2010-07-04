@@ -1,0 +1,15 @@
+<web-app>
+  <!-- Proxy Servlets to the restful backend - i.e. rails ixtlan backend-->
+  <servlet>
+    <servlet-name>XMLProxyServlet</servlet-name>
+    <servlet-class>de.saumya.gwt.persistence.server.ProxyServlet</servlet-class>
+    <init-param>
+      <param-name>base</param-name>
+      <param-value>/com.example.Application</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>XMLProxyServlet</servlet-name>
+    <url-pattern>*.xml</url-pattern>
+  </servlet-mapping>
+</web-app>
