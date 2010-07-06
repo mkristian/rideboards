@@ -26,7 +26,11 @@ Rails::Initializer.run do |config|
   config.gem 'dm-migrations'
   config.gem 'dm-timestamps'
   config.gem 'dm-validations'
-  config.gem 'dm-sqlite-adapter'
+  if ENV['RAILS_ENV'] == 'production'
+    config.gem 'dm-postgres-adapter'
+  else
+    config.gem 'dm-sqlite-adapter'
+  end
   config.gem 'ixtlan'
   config.gem 'rack'
   # Settings in config/environments/* take precedence over those specified here.
