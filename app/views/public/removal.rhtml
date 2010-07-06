@@ -1,0 +1,29 @@
+<p class="title" align="center">Authorization for removal of listing: <%=h @listing.name %></p>
+    <fieldset>
+    <div id="center_form">
+    <form method="post"
+    action="<%=h "../#{@listing.id}" %>">
+          <p>Please enter your removal code<br/>
+          <input name="_method" type="hidden" value="delete"/>
+          <input name="password" type="password"/></p>
+          <p>
+		  <% if @listing.driver %>
+          <%= submit_tag "Remove Offer"%>
+        <% else %>
+          <%= submit_tag "Remove Request"%>
+        <% end %>
+	</p>
+	</form>
+          <p>If you have forgotten your removal
+    code, it can be sent to the email 
+    address that was entered in the rideboard to remove this <%= ("Offer" if
+    @listing.driver) || "Request" %>
+    </p>
+    <form action="reminder" method="post">
+    <%= submit_tag "Remind Me"%>
+    </form>
+  </fieldset>
+
+    <p>
+    <a href="<%= "../../../#{@board.id}" %>">Return to rideboard</a>
+    </p>

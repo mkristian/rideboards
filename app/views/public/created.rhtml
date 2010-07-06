@@ -1,0 +1,11 @@
+  <fieldset>
+  <p class="title" align="center">Ride <%= ("Offer" if @listing.driver == 1) || "Request" %> Confirmation.</p>
+    <h4 align="center">
+      Your <%= ("Offer" if @listing.driver == 1) || "Request" %> has been added to the Ride Board. <%= "Please remember this removal code: " + @listing.password %><br/>
+      You will be asked for it before you can remove your entry from the board.
+    </h4>
+    <p align="center"><%= "(the removal code has also been sent to your email address)" %></p>
+    </fieldset>
+    <p>
+    <a href="<%= "../#{@board.id}" %>">Return to rideboard</a>
+    </p>

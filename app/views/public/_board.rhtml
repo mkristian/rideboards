@@ -1,0 +1,154 @@
+  <p class="medtext" align="center"><strong>
+  This rideshare board is hosted and maintained by volunteers solely for the
+    purpose of facilitating rides to Vipassana courses.
+    <br/>
+    It is available as a
+    service to students who wish to participate.
+    <br/>
+     We cannot guarantee a ride, and assume no responsibility whatsoever for the safety of participants or for any other issues arising as a result of participation.</strong><br/>
+  <a target="_blank" href="http://www.dhamma.org/en/privacy.shtml">Privacy Policy</a></p>
+  
+  <div align="center">
+    <table width="95%" border="0">
+      <tr>
+	<td><!-- Begin Rideboard-->
+	  <div class="on">
+	    <table cellspacing="8">
+	      <tr>
+		<td class="title">
+		  <strong>Ride Requests</strong>
+		</td>
+	      </tr>
+	      <tr>
+		<td>
+		  <a href="<%= "#{@board.id}/listings/new/wanted" %>">Request A Ride</a>
+		</td>
+	      </tr>
+	      <tr>
+		<td>
+		  <a href="#request">View Ride Requests</a>
+		</td>
+	      </tr>
+	    </table>
+	  </div>
+	</td>
+	<td><!-- Begin Rideboard-->
+	  <div class="on">
+	    <table cellspacing="8">
+	      <tr>
+		<td class="title">
+		  <strong>Ride Offers</strong>
+		</td>
+	      </tr>
+	      <tr>
+		<td>
+		  <a href="<%= "#{@board.id}/listings/new/offer" %>">Offer A Ride</a>
+		</td>
+	      </tr>
+	      <tr>
+		<td>
+		  <a href="#offer">View Ride Offers</a>
+		</td>
+	      </tr>
+	    </table>
+	  </div>
+	</td>
+      </tr>
+    </table>
+  </div>
+
+
+<div align="center">
+  <table width="95%" border="0">
+    <tr>
+      <td><!-- Begin Rideboard-->
+        <div class="on"><a name="<%= @board.name%>"></a>
+      <p align="center" class="heading"><%= @board.fullname %><br/>
+        <%= link_to("Directions", @board.directions_url) if @board.directions_url? %>  <%= link_to("Map", @board.map_url) if @board.map_url? %>
+      </p>
+      <table align="center" width="95%" border="0" cellpadding="0" cellspacing="0">
+            <tr align="center">
+              <td class="title"><a name="request"></a><strong>Ride Requests</strong></td>
+            </tr>
+          </table>
+          <br/>
+
+
+      <table border="0" cellspacing="0" cellpadding="1" align="center" width="96%">
+  		<tr bgcolor="#1E8776">
+        <td><table bgcolor="ffffff" border="0" width="100%" cellspacing="0" cellpadding="2" align="center">
+                  <tr align="center">
+                    <td class="headingsmall" width="18%">Name</td>
+                    <td class="headingsmall" width="18%">Location</td>
+                    <td class="headingsmall" width="16%">Date Ride&nbsp;Needed</td>
+                    <td class="headingsmall" width="16%">Contact</td>
+                    <td class="headingsmall" width="16%">Delete Entry</td>
+                  </tr>
+
+            <% reset_cycle
+              for listing in @board.listings 
+	      unless listing.driver%>
+            <tr align="center" valign="top" class='<%= cycle("table_line_odd", "table_line_even") %>' >
+              <td><%= h(listing.name) %></td>
+              <td><%= h(listing.location) %></td>
+              <td><%= h(listing.ridedate) %></td>
+              <td><a href="<%=h "#{listing.board.id}/listings/#{listing.id}/contact/new" %>">Contact Me</a></td>
+              <td><a href="<%=h "#{listing.board.id}/listings/#{listing.id}/edit" %>">X</a></td>             
+                 </tr>
+            <% end
+	    end %>
+          </table>
+        </td>
+      </tr>
+  		</table>
+          <br/>
+          <br/>
+  <table align="center" width="95%" border="0" cellpadding="0" cellspacing="0">
+            <tr align="center">
+              <td class="title"><a name="offer"></a><strong>Rides Offers</strong></td>
+            </tr>
+          </table>
+          <br/>
+   
+      <table border="0" cellspacing="0" cellpadding="1" align="center" width="96%">
+  		<tr bgcolor="#1E8776">
+        <td><table bgcolor="ffffff" border="0" width="100%" cellspacing="0" cellpadding="2" align="center">
+                  <tr align="center">
+                    <td class="headingsmall" width="18%">Name</td>
+                    <td class="headingsmall" width="18%">Location</td>
+                    <td class="headingsmall" width="16%">Date Ride&nbsp;Offered</td>
+                    <td class="headingsmall" width="16%">Contact</td>
+                    <td class="headingsmall" width="16%">Delete Entry</td>
+                  </tr>
+            <% reset_cycle
+              for listing in @board.listings 
+	      if listing.driver  %>
+              <tr align="center" valign="top" class='<%= cycle("table_line_odd", "table_line_even") %>' >
+                <td><%= h(listing.name) %></td>
+                <td><%= h(listing.location) %></td>
+                <td><%= h(listing.ridedate) %></td>
+              <td><a href="<%=h "#{listing.board.id}/listings/#{listing.id}/contact/new" %>">Contact Me</a></td>
+              <td><a href="<%=h "#{listing.board.id}/listings/#{listing.id}/edit" %>">X</a></td>             
+              </tr>
+            <%  end
+	    end %>
+          </table>
+        </td>
+      </tr>
+	</table>
+          <br />
+          <br />
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+        <!-- End Rideboard-->
+
+  <% unless @venue.iframe_url? %>
+  <p align="center"><img src="/images/thinrule.gif" width="100%" height="7" alt="thinrule"/></p>
+   <p align="center"> <%= "| " + link_to("Home", @venue.home_url) if @venue.home_url? %>
+    <%= "| " + link_to("Course Schedule", @venue.schedule_url) if @venue.schedule_url? %>
+    <%= "| " + link_to("Course Checklist", @venue.checklist_url) if @venue.checklist_url? %>
+    <%= " |" if @venue.home_url? or @venue.schedule_url? or @venue.checklist_url? %></p>
+  <% end %>

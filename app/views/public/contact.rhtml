@@ -1,0 +1,36 @@
+<p class="title" align="center"><%= "Send a message to " + @contact.listing.name %></p>
+    <fieldset>
+      <div id="center_form">
+	<% if @contact.errors.size == 0 %>
+      <h3 align="center"><%= "Please fill in the following fields" %>:</h3>
+      <% else %>
+      <h3 align="center"><%= "Please fill in the <span class=\"errorColor\">red</span> fields"%>:</h3>
+        <% end %>
+         <% form_for(:contact, :url => (@contact.errors.size > 0 ? "" : "contact")) do |f| %>
+	 <table>
+	 <tr><td><b><%= "Your name" %>:</b></td>
+	 <td><%= display(f.text_field(:name, :size => 32, :maxlength => 32), :name) %></p>
+	  </td>
+	  </tr>
+	 <tr><td><b><%= "Your return email address" %>:</b></td>
+	 <td><%= display(f.text_field(:email, :size => 32, :maxlength => 32), :email) %></p>
+	  </td>
+	  </tr>
+	 <tr><td><b><%= "Your phone number (optional)" %>:</b></td>
+	 <td><%= display(f.text_field(:phone, :size => 32, :maxlength => 32), :phone) %></p>
+	  </td>
+	  </tr>
+<tr>
+<td>&nbsp;</td>
+<td>
+ <%= submit_tag "Send Message" %>
+</td>
+</tr>
+</table>
+        <% end %>
+      </div>
+    </fieldset>
+    
+    <p>
+    <a href="<%= "../../../../#{@board.id}" %>">Return to rideboard</a>
+    </p>

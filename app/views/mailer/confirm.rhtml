@@ -1,0 +1,38 @@
+Hello <%=h(@listing.name) %>,
+
+Your name has been added to our online rideshare board at: 
+<%=h @board_url %>
+<% if @listing.board.venue.password && @listing.board.venue.password != 'NULL' && @listing.board.venue.password != '' 
+# TODO fix the sqlite big with the NULL %>
+The password to access the rideboard is: <%=h @listing.board.venue.password %>
+<% end %>
+You may have added your name yourself, or we may have added your name for you
+if you noted on your application that you could give other participants a ride
+to the course. The following information is listed:
+
+Name: <%= h(@listing.name) %>
+Destination: <%= h(@listing.board.fullname) %>
+Location: <%= h(@listing.location) %>
+Type: <%= "Offer Ride" if @listing.driver %><%= "Request Ride" unless @listing.driver %>
+Date: <%=h @date %>
+
+Visitors to the online rideshare board will be able to send you an email to
+coordinate sharing a ride with you.  Your email address will not be visible to
+them when they do so. You can choose whether to reply to any requests you
+receive. You can also use this page to send such message to others. You can
+remove yourself from the list at any time by clicking on the 'X' in the Delete
+Entry column, and entering this removal code: <%=h @listing.password %>
+
+Please let us know if you have any questions.
+
+With best wishes,
+<%= h(@listing.board.venue.fullname) %> Rideshare
+<%= h(@listing.board.venue.email) %>
+
+--------------------------------------------------------------------------
+This rideshare board is hosted and maintained by volunteers solely for the
+purpose of facilitating rides to Vipassana courses. It is available as a
+service to students who wish to participate. We cannot guarantee a ride, and
+assume no responsibility whatsoever for the safety of participants or for any
+other issues arising as a result of participation.
+--------------------------------------------------------------------------

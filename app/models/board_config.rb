@@ -2,10 +2,14 @@ class BoardConfig
   include DataMapper::Resource
 
   property :id, Serial
-  property :board_id, Integer, :required => true
-  property :locale_id, Integer, :required => true
-  property :map_url, String, :required => true, :format => /^[^<'&">]*$/, :length => 255
-  property :directions_url, String, :required => true, :format => /^[^<'&">]*$/, :length => 255
+  property :map_url, String, :required => false, :format => /#{VenueConfig::URL_PATTERN}/, :length => 255, :message => VenueConfig::FORMAT_MESSAGE
+  property :directions_url, String, :required => false, :format => /#{VenueConfig::URL_PATTERN}/, :length => 255, :message => VenueConfig::FORMAT_MESSAGE
+ 
+  #property :board_id, Integer, :required => true
+  #property :locale_id, Integer, :required => true
+  belongs_to :locale
+  belongs_to :board
+
   timestamps :at
 
   modified_by Ixtlan::Models::USER

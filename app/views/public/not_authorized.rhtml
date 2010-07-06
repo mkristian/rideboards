@@ -1,0 +1,10 @@
+<p class="title" align="center"><%= "Authorization failure" %></p>
+    <fieldset>
+    <div id="center_form">
+    <h3 align="center">The code you entered does not authorize you to remove this <%= ("Offer" if @listing && @listing.driver == 1) || "Request" %>.</h3>
+      </div>
+  </fieldset>
+</p>
+    <p>
+    <a href="<%= "../../#{@board.id}" %>">Return to rideboard</a>
+    </p>

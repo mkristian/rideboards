@@ -1,0 +1,27 @@
+Hello <%= h(@listing.name) %>,
+
+Here is your removal code: <%= h(@listing.password) %>
+
+To remove your listing, please enter this code at:
+<%= @board_url %>
+<% if @listing.board.venue.password && @listing.board.venue.password != 'NULL'
+# TODO fix the sqlite big with the NULL %>
+
+The password to access the rideboard is: <%= @listing.board.venue.password %>
+<% end %>
+If you have received this message without having requested it, it is because
+someone attempted to remove your listing from the Vipassana Rideshare
+Board. It was mostly likely an innocent mistake, so you can safely disregard
+this message.
+
+With best wishes,
+<%= h(@listing.board.venue.fullname) %> Rideshare
+<%= h(@listing.board.venue.email) %>
+
+--------------------------------------------------------------------------
+This rideshare board is hosted and maintained by volunteers solely for
+the purpose of facilitating rides to Vipassana courses. It is available as a
+service to students who wish to participate. We cannot guarantee a ride,
+and assume no responsibility whatsoever for the safety of participants or for
+any other issues arising as a result of participation.
+--------------------------------------------------------------------------

@@ -1,0 +1,21 @@
+<%= "Hello" %> <%= h(@contact.listing.name) %>
+
+<%= "Please contact" %> <%= h(@contact.name.strip) %> <%= "in order to discuss your" %> <%= ("ride offer" if @contact.listing.driver) %><%= ("ride request" unless @contact.listing.driver)%> <%= "to" %> <%= h(@contact.listing.board.fullname) %> <%= "on" %> <%= h(@contact.listing.ridedate.to_s) %>.
+
+<%= "You can reach" %> <%= h(@contact.name.strip) %> <%= "by email at:" %> <%=h(@contact.email.strip) %>
+<% if @contact.phone && @contact.phone.strip != "" %><%= "or by telephone at:" %> <%= h(@contact.phone) %>.
+<% end %>
+<%= "Please do not reply to this email unless you require additional assistance." %>
+
+<%= "With best wishes," %>
+<%= h(@contact.listing.board.venue.fullname) %> <%= "Rideshare" %>
+<%= h(@contact.listing.board.venue.email) %>
+
+
+--------------------------------------------------------------------------
+This rideshare board is hosted and maintained by volunteers solely for the
+purpose of facilitating rides to Vipassana courses. It is available as a
+service to students who wish to participate. We cannot guarantee a ride, and
+assume no responsibility whatsoever for the safety of participants or for any
+other issues arising as a result of participation.
+--------------------------------------------------------------------------

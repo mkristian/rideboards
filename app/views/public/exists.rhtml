@@ -1,0 +1,10 @@
+  <fieldset>
+  <p class="title" align="center">Ride <%= ("Offer" if @listing.driver) || "Request" %> Exists!</p>
+    <h4 align="center">
+      Your ride <%= ("offer" if @listing.driver) || "request" %> is already on the rideboard.<br/>
+    </h4>
+  </fieldset>
+</p>
+    <p>
+    <a href="<%= "../#{@board.id}" %>">Return to rideboard</a>
+    </p>

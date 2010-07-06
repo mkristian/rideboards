@@ -10,7 +10,9 @@ class Listing
   property :password, String, :required => true, :format => /^[^<'&">]*$/, :length => 255
   timestamps :at
 
-  modified_by Ixtlan::Models::USER
+#   modified_by Ixtlan::Models::USER
+
+  belongs_to :board
 
   require 'dm-serializer'
   alias :to_x :to_xml_document
@@ -21,4 +23,17 @@ class Listing
     to_x(opts, doc)
   end
 
+  def reset_password
+    if(email == "test@rides.server.dhamma.org")
+      self.password = "31415"
+    else
+      self.password = Ixtlan::Passwords.generate(5)
+    end
+  end
+
+  def self.first!(*args)
+    result = self.first(*args)
+    raise DataMapper::ObjectNotFoundError.new("Listing" + args.inspect) if result.nil?
+    result
+  end
 end

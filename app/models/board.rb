@@ -10,6 +10,11 @@ class Board
 
   modified_by Ixtlan::Models::USER
 
+  belongs_to :venue
+
+  has n, :board_configs
+  has n, :listings
+
   require 'dm-serializer'
   alias :to_x :to_xml_document
   def to_xml_document(opts = {}, doc = nil)
@@ -19,4 +24,23 @@ class Board
     to_x(opts, doc)
   end
 
+  def locale= (locale, create = false)
+    @lang = BoardConfig.first(:board => self, :locale => locacle)
+
+    # create a new one if needed and wanted
+    @lang = BoardConfig.create(:locale => locale, :board => self) if @lang.nil? && create
+  end
+
+  #create delegate methods
+  %w(directions_url map_url).each do |name|
+    class_eval <<-CODE, __FILE__, __LINE__
+      def #{name}
+        @lang.#{name} if @lang
+      end
+
+      def #{name}?
+        !(@lang && @lang.#{name}).blank?
+      end
+CODE
+  end
 end

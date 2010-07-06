@@ -37,45 +37,29 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :permissions
 
-  # The priority is based upon order of creation: first created -> highest priority.
-
-  # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
-
-  # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
-
-  # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
+  #
+  # public students' UI from here on
+  #
+  map.resources :boards, :controller => "public_boards", :path_prefix => ":lang/:venue" do |board|
+    
+    board.resources :listings, :controller => "public_listings", :new => { :wanted => :get }
+    board.resources :listings, :controller => "public_listings", :new => { :offer => :get }
+    board.resources :listings, :controller => "public_listings", :member => { :reminder => :post }
+    board.resources :listings, :controller => "public_listings" do |listing|
+      listing.resource :contact
+    end
+  end
   
-  # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
-  #   end
+  # named venue and named board (if visable) with language choice
+  map.connect ":lang/:venue/:board", :controller => "public_boards", :action => "show"
+  map.connect ":lang/:venue/:board/index.html", :controller => "public_boards", :action => "show"
 
-  # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
-  #   end
+  # named venue with language choice
+  map.connect ":lang/:venue", :controller => "public_boards", :action => "show"
+  map.connect ":lang/:venue/index.html", :controller => "public_boards", :action => "show"
 
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
-
-  # See how all your routes lay out with "rake routes"
-
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  # named venue with language negotiation
+  map.connect ":venue", :controller => "public_boards", :action => "shows"
+  map.connect ":venue/index.html", :controller => "public_boards", :action => "show"
+  
 end

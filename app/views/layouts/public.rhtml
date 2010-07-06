@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%=h @venue.fullname %> Ride Share Boards</title>
+  <%= stylesheet_link_tag 'rideboard' %>
+</head>
+<body>
+
+<% if flash[:login_notice] %>
+<fieldset class="notice">
+<legend>Notice</legend>
+<p style="color: green; font-weight: bold;"><%= flash[:login_notice] %></p>
+</fieldset>
+<% end %>
+
+<%= yield  %>
+
+</body>
+</html>

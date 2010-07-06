@@ -1,0 +1,13 @@
+<p class="title" align="center"><%= "Removal request confirmed" %></p>
+    <fieldset>
+    <div id="center_form">
+    <h3 align="center">Ride  <%= ("Offer" if @listing.driver) || "Request" %>
+    for '<%=h @listing.name %>' was removed.<br/>
+     Please review the Rideboard to ensure this change was properly
+    processed.</h3>
+      </div>
+  </fieldset>
+</p>
+    <p>
+    <a href="<%= "../../#{@board.id}" %>">Return to rideboard</a>
+    </p>

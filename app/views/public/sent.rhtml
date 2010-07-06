@@ -1,0 +1,12 @@
+<p class="title" align="center"><%= "The following email message was sent to " + @contact.listing.name %>:</p
+    <fieldset>
+      <div id="center_page">
+<pre>
+<%= @message %>
+</pre>
+      </div>
+    </fieldset>
+    
+    <p>
+    <a href="<%= "../../../#{@board.id}" %>">Return to rideboard</a>
+    </p>
