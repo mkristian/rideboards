@@ -6,7 +6,7 @@
       <% else %>
       <h3 align="center"><%= "Please fill in the <span class=\"errorColor\">red</span> fields"%>:</h3>
         <% end %>
-         <% form_for(:contact, :url => (@contact.errors.size > 0 ? "" : "contact")) do |f| %>
+         <% form_for(:contact, :url => (params[:action] == 'new' ? "../contact" : "contact")) do |f| %>
 	 <table>
 	 <tr><td><b><%= "Your name" %>:</b></td>
 	 <td><%= display(f.text_field(:name, :size => 32, :maxlength => 32), :name) %></p>
