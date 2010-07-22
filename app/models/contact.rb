@@ -17,7 +17,6 @@ class Contact
       @my_listing_id = contact[:listing_id]
       @my_listing = contact[:listing]
     end
-    @my_errors = { }
   end
 
   def valid?
@@ -26,6 +25,7 @@ class Contact
   end
 
   def errors
+    validate
     def @my_errors.invalid?(attr)
       self[attr.to_sym] || false
     end
@@ -39,10 +39,10 @@ class Contact
   end
   
   def validate
+    @my_errors = {}
     @my_errors[:listing] = "listing cannot be blank" if (@my_listing == nil && @my_listing_id == nil)
-    @my_errors[:name] = "Please fill in your name" if self.name == nil
-    @my_errors[:name] = "Please fill in a valid name" unless (self.name =~ /^\w+$/)
-    @my_errors[:phone] = "Please fill in a valid phone number" if (self.phone && !self.phone =~ /^[-0-9() +]+$/)
+    @my_errors[:name] = "Please fill in a valid name" if (name =~ /^[^<'&">]*$/).nil? || name.blank?
+    @my_errors[:phone] = "Please fill in a valid phone number" if !phone.nil? && (phone =~ /^[-0-9() +]+$/).nil?
     @my_errors[:email] = "Please fill in a valid email address" unless self.email =~ /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   end
 

@@ -2,15 +2,22 @@ class Listing
   include DataMapper::Resource
 
   property :id, Serial
-  property :location, String, :required => true, :format => /^[^<'&">]*$/, :length => 255
-  property :email, String, :required => true, :format => /^[^<'&">]*$/, :length => 255
-  property :name, String, :required => true, :format => /^[^<'&">]*$/, :length => 255
+  property :location, String, :required => true, :format => /^[^<'&">]*$/, :length => 255, :message => "Please enter a valid Location"
+  property :email, String, :required => true, :format => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/, :length => 255, :message => "Please enter a valid Email"
+  property :name, String, :required => true, :format => /^[^<'&">]*$/, :length => 255, :message => "Please enter a valid Name"
   property :ridedate, Date, :required => true
-  property :driver, ::DataMapper::Types::Boolean, :required => true
-  property :password, String, :required => true, :format => /^[^<'&">]*$/, :length => 255
-  timestamps :at
 
-#   modified_by Ixtlan::Models::USER
+  validates_with_block :ridedate do
+    if ridedate < Date.today
+      [ false, "Ride Date must be in the future"]
+    else
+      true
+    end
+  end
+
+  property :driver, ::DataMapper::Types::Boolean, :required => true
+  property :password, String, :required => true, :format => /^[0-9]*$/, :length => 5
+  timestamps :at
 
   belongs_to :board
 
@@ -18,7 +25,10 @@ class Listing
   alias :to_x :to_xml_document
   def to_xml_document(opts = {}, doc = nil)
     unless(opts[:methods])
-      opts.merge!({:methods => [:updated_by], :updated_by => {:methods => [], :exclude => [:created_at, :updated_at]}})
+      opts.merge!({:methods => [:board], :board => {:methods => [], :exclude => [:created_at, :updated_at]}})
+    end
+    unless(opts[:exclude])
+      opts.merge!({:exclude => [:password, :board_id]})
     end
     to_x(opts, doc)
   end
@@ -27,7 +37,7 @@ class Listing
     if(email == "test@rides.server.dhamma.org")
       self.password = "31415"
     else
-      self.password = Ixtlan::Passwords.generate(5)
+      self.password = Ixtlan::Passwords.generate_numeric(5)
     end
   end
 

@@ -3,9 +3,12 @@
       <div id="center_form">
 	<% if @contact.errors.size == 0 %>
       <h3 align="center"><%= "Please fill in the following fields" %>:</h3>
-      <% else %>
-      <h3 align="center"><%= "Please fill in the <span class=\"errorColor\">red</span> fields"%>:</h3>
-        <% end %>
+      <% else 
+        @contact.errors.each do |k, msg|
+      %>
+	<h4 style="color:red;"><%=h msg %></h3>
+        <% end
+           end %>
          <% form_for(:contact, :url => (params[:action] == 'new' ? "../contact" : "contact")) do |f| %>
 	 <table>
 	 <tr><td><b><%= "Your name" %>:</b></td>
