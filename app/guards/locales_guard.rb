@@ -1,5 +1,5 @@
 Ixtlan::Guard.initialize(:locales, {
-:index => [],
+:index => [:*],
 :show => [],
 :new => [],
 :create => [],

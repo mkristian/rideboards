@@ -1,6 +1,6 @@
 Ixtlan::Guard.initialize(:boards,
-                 { :index => [],
-                   :show => [],
+                 { :index => [:listing],
+                   :show => [:listing],
                    :edit => [],
                    :update => [],
                    :new => [],

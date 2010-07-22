@@ -1,5 +1,5 @@
 Ixtlan::Guard.initialize(:domains, {
-:index => [],
+:index => [:*],
 :show => [],
 :new => [],
 :create => [],

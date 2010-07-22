@@ -1,5 +1,5 @@
 Ixtlan::Guard.initialize(:configurations, {
-:show => [],
+:show => [:*],
 :edit => [],
 :update => []
 })

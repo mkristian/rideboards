@@ -1,8 +1,8 @@
 Ixtlan::Guard.initialize(:listings,
-                 { :index => [],
-                   :show => [],
+                 { :index => [:listing],
+                   :show => [:listing],
                    :edit => [],
                    :update => [],
                    :new => [],
                    :create => [],
-                   :destroy => [] })
+                   :destroy => [:listing] })

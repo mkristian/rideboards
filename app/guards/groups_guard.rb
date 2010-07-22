@@ -1,5 +1,5 @@
 Ixtlan::Guard.initialize(:groups, {
-:index => [],
+:index => [:*],
 :show => [],
 :new => [],
 :create => [],
