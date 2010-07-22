@@ -37,22 +37,6 @@
     -->
     <dependency>
       <groupId>rubygems</groupId>
-      <artifactId>activerecord-jdbc-adapter</artifactId>
-      <version>0.9.4</version>
-      <type>gem</type>
-    </dependency>
-    <dependency>
-      <groupId>rubygems</groupId>
-      <artifactId>jdbc-sqlite3</artifactId>
-      <!--
-	  for the stability of the build it is better to change this to
-	  specific working version
-      -->
-      <version>[0.0.0,)</version>
-      <type>gem</type>
-    </dependency>
-    <dependency>
-      <groupId>rubygems</groupId>
       <artifactId>rails</artifactId>
       <version>2.3.8</version>
       <type>gem</type>
@@ -103,7 +87,7 @@
 <dependency>
 <groupId>rubygems</groupId>
 <artifactId>ixtlan</artifactId>
-<version>0.4.0.pre4</version>
+<version>0.4.0.pre6</version>
 <type>gem</type>
 </dependency>
 <dependency>
@@ -166,12 +150,6 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jruby.plugins.version>0.20.0-SNAPSHOT</jruby.plugins.version>
-    <jruby.fork>true</jruby.fork>
-    <!--
-	this is needed for the maven-war-plugin configuration
-    -->
-    <jruby.gem.home>${project.build.directory}/wargems</jruby.gem.home>
-    <jruby.gem.path>${project.build.directory}/wargems</jruby.gem.path>
   </properties>
   <build>
     <outputDirectory>war/WEB-INF/classes</outputDirectory>
@@ -251,7 +229,7 @@
 	 two sets of gems inside the war file
      -->
             <resource>
-              <directory>${jruby.gem.path}</directory>
+              <directory>${project.build.directory}/rubygems</directory>
               <targetPath>WEB-INF/gems</targetPath>
             </resource>
           </webResources>
@@ -263,35 +241,35 @@
         <version>7.0.1.v20091125</version>
       </plugin>
       <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>gwt-maven-plugin</artifactId>
-                <version>1.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>test</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <runTarget>com.example.Application/Application.html</runTarget>
-                </configuration>
-            </plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>gwt-maven-plugin</artifactId>
+	<version>1.2</version>
+	<executions>
+	  <execution>
+	    <goals>
+	      <goal>compile</goal>
+	    </goals>
+	  </execution>
+	  <execution>
+	    <id>test</id>
+	    <phase>test</phase>
+	    <goals>
+	      <goal>test</goal>
+	    </goals>
+	  </execution>
+	</executions>
+	<configuration>
+	  <runTarget>com.example.Application/Application.html</runTarget>
+	</configuration>
+      </plugin>
       <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
+	<artifactId>maven-compiler-plugin</artifactId>
+	<version>2.0.2</version>
+	<configuration>
+	  <source>1.6</source>
+	  <target>1.6</target>
+	</configuration>
+      </plugin>
     </plugins>
   </build>
 
