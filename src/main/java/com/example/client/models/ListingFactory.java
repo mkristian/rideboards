@@ -3,27 +3,22 @@
  */
 package com.example.client.models;
 
-
 import de.saumya.gwt.persistence.client.Repository;
 import de.saumya.gwt.persistence.client.ResourceFactory;
 import de.saumya.gwt.persistence.client.ResourceNotifications;
 
-import de.saumya.gwt.session.client.models.UserFactory;
-
 public class ListingFactory extends ResourceFactory<Listing> {
 
-    private final UserFactory userFactory;
+    BoardFactory boardFactory;
 
     public ListingFactory(final Repository repository,
-            final ResourceNotifications notifications,
-            final UserFactory userFactory) {
+            final ResourceNotifications notifications) {
         super(repository, notifications);
-        this.userFactory = userFactory;
     }
 
     @Override
     public Listing newResource(final int id) {
-        return new Listing(this.repository, this, this.userFactory, id);
+        return new Listing(this.repository, this, id, this.boardFactory);
     }
 
     @Override
@@ -32,8 +27,7 @@ public class ListingFactory extends ResourceFactory<Listing> {
     }
 
     @Override
-    public String defaultSearchParameterName() {
-        return null;
+    public boolean isImmutable() {
+        return true;
     }
-
 }

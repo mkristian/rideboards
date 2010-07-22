@@ -5,6 +5,7 @@ package com.example.client.views.boards;
 
 import com.example.client.models.Board;
 import com.example.client.models.BoardFactory;
+import com.example.client.models.ListingFactory;
 
 import de.saumya.gwt.session.client.Session;
 import de.saumya.gwt.translation.common.client.GetTextController;
@@ -38,12 +39,17 @@ public class BoardScreen extends ResourceScreen<Board> {
             final BoardFactory factory, final Session session,
             final ResourceBindings<Board> bindings,
             final NotificationListeners listeners,
-            final HyperlinkFactory hyperlinkFactory) {
+            final HyperlinkFactory hyperlinkFactory,
+            final ListingFactory listingFactory) {
         super(loadingNotice,
                 factory,
                 session,
-               new ResourcePanel<Board>(new BoardHeaders(getTextController),
-                       new BoardFields(getTextController, bindings)),
+                new ResourcePanel<Board>(new BoardHeaders(getTextController),
+                        new BoardFields(getTextController,
+                                bindings,
+                                listingFactory,
+                                session,
+                                hyperlinkFactory)),
                 new ResourceCollectionPanel<Board>(loadingNotice,
                         new ResourceCollectionNavigation<Board>(loadingNotice,
                                 factory,

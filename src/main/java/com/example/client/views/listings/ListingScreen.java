@@ -3,6 +3,7 @@
  */
 package com.example.client.views.listings;
 
+import com.example.client.models.BoardFactory;
 import com.example.client.models.Listing;
 import com.example.client.models.ListingFactory;
 
@@ -29,7 +30,7 @@ public class ListingScreen extends ResourceScreen<Listing> {
         }
 
         public void reset(final Listing resource) {
-            reset(resource, resource.updatedAt, resource.updatedBy);
+            reset(resource, resource.updatedAt, null);
         }
     }
 
@@ -38,12 +39,17 @@ public class ListingScreen extends ResourceScreen<Listing> {
             final ListingFactory factory, final Session session,
             final ResourceBindings<Listing> bindings,
             final NotificationListeners listeners,
-            final HyperlinkFactory hyperlinkFactory) {
+            final HyperlinkFactory hyperlinkFactory,
+            final BoardFactory boardFactory) {
         super(loadingNotice,
                 factory,
                 session,
-               new ResourcePanel<Listing>(new ListingHeaders(getTextController),
-                       new ListingFields(getTextController, bindings)),
+                new ResourcePanel<Listing>(new ListingHeaders(getTextController),
+                        new ListingFields(getTextController,
+                                bindings,
+                                session,
+                                boardFactory,
+                                hyperlinkFactory)),
                 new ResourceCollectionPanel<Listing>(loadingNotice,
                         new ResourceCollectionNavigation<Listing>(loadingNotice,
                                 factory,
@@ -59,7 +65,7 @@ public class ListingScreen extends ResourceScreen<Listing> {
                         listeners,
                         hyperlinkFactory,
                         true,
-                        true),
+                        false),
                 listeners,
                 hyperlinkFactory);
     }

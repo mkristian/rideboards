@@ -4,11 +4,16 @@
 package com.example.client.views.boards;
 
 import com.example.client.models.Board;
+import com.example.client.models.Listing;
+import com.example.client.models.ListingFactory;
 
-import de.saumya.gwt.persistence.client.TimestampFactory;
+import de.saumya.gwt.session.client.Session;
 import de.saumya.gwt.translation.common.client.GetTextController;
+import de.saumya.gwt.translation.common.client.widget.HyperlinkFactory;
 import de.saumya.gwt.translation.common.client.widget.ResourceBindings;
+import de.saumya.gwt.translation.common.client.widget.ResourceCollectionListing;
 import de.saumya.gwt.translation.common.client.widget.ResourceFields;
+import de.saumya.gwt.translation.common.client.widget.ResourceBindings.Binding;
 import de.saumya.gwt.translation.gui.client.bindings.CheckBoxBinding;
 import de.saumya.gwt.translation.gui.client.bindings.IntegerTextBoxBinding;
 import de.saumya.gwt.translation.gui.client.bindings.TextBoxBinding;
@@ -16,7 +21,9 @@ import de.saumya.gwt.translation.gui.client.bindings.TextBoxBinding;
 public class BoardFields extends ResourceFields<Board> {
 
     public BoardFields(final GetTextController getTextController,
-            final ResourceBindings<Board> bindings) {
+            final ResourceBindings<Board> bindings,
+            final ListingFactory factory, final Session session,
+            final HyperlinkFactory hyperlinkFactory) {
         super(getTextController, bindings);
         add("name", new TextBoxBinding<Board>() {
 
@@ -54,7 +61,7 @@ public class BoardFields extends ResourceFields<Board> {
                 resource.position = getTextAsInt();
             }
         }, 0, 123456);
-        add("enabled", new CheckBoxBinding<Board>() {
+        addSmall("enabled", new CheckBoxBinding<Board>() {
 
             @Override
             public void pullFrom(final Board resource) {
@@ -66,5 +73,37 @@ public class BoardFields extends ResourceFields<Board> {
                 resource.enabled = getValue();
             }
         });
+
+        addBig("listings", new ListingWidget(session,
+                factory,
+                getTextController,
+                hyperlinkFactory));
+    }
+
+    static class ListingWidget extends ResourceCollectionListing<Listing>
+            implements Binding<Board> {
+
+        public ListingWidget(final Session session,
+                final ListingFactory factory,
+                final GetTextController getTextController,
+                final HyperlinkFactory hyperlinkFactory) {
+            super(session, factory, getTextController, hyperlinkFactory);
+            setPathFactory(hyperlinkFactory.newPathFactory(factory.storagePluralName()));
+        }
+
+        @Override
+        public void pullFrom(final Board resource) {
+            reset(resource.listings);
+        }
+
+        @Override
+        public void pushInto(final Board resource) {
+            // nothing to do
+        }
+
+        @Override
+        public void setEnabled(final boolean isEnabled) {
+            // TODO
+        }
     }
 }
