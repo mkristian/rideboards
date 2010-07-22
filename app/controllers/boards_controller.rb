@@ -1,9 +1,10 @@
 class BoardsController < ApplicationController
 
+  include Ixtlan::Controllers::SearchQuery
   # GET /boards
   # GET /boards.xml
   def index
-    @boards = Board.all()
+    @boards = query(Board, :name, :fullname)
 
     respond_to do |format|
       format.html
@@ -61,6 +62,8 @@ class BoardsController < ApplicationController
   def update
     @board = Board.get!(params[:id])
     @board.current_user = current_user
+
+    params[:board].delete(:listings)
 
     respond_to do |format|
       if @board.update(params[:board]) or not @board.dirty?

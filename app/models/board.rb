@@ -16,12 +16,17 @@ class Board
   has n, :listings
 
   require 'dm-serializer'
-  alias :to_x :to_xml_document
-  def to_xml_document(opts = {}, doc = nil)
-    unless(opts[:methods])
-      opts.merge!({:methods => [:updated_by], :updated_by => {:methods => [], :exclude => [:created_at, :updated_at]}})
+  if protected_instance_methods.find {|m| m == 'to_x'}.nil?
+    alias :to_x :to_xml_document
+    def to_xml_document(opts = {}, doc = nil)
+      unless(opts[:methods])
+        opts.merge!({:methods => [:updated_by, :listings], :updated_by => {:methods => [], :exclude => [:created_at, :updated_at, :hashed_password, :language]}, :listings =>{ :exclude => [:created_at, :updated_at, :password, :board_id], :methods => []}})
+      end
+      unless(opts[:exclude])
+        opts.merge!({:exclude => [:updated_by_id]})
+      end
+      to_x(opts, doc)
     end
-    to_x(opts, doc)
   end
 
   def locale= (locale, create = false)

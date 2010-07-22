@@ -1,5 +1,5 @@
 class PublicListingsController < PublicController
-  
+
   def index
     raise Exception.new("forced error to test error page")
   end

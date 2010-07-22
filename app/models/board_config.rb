@@ -4,6 +4,7 @@ class BoardConfig
   property :id, Serial
   property :map_url, String, :required => false, :format => /#{VenueConfig::URL_PATTERN}/, :length => 255, :message => VenueConfig::FORMAT_MESSAGE
   property :directions_url, String, :required => false, :format => /#{VenueConfig::URL_PATTERN}/, :length => 255, :message => VenueConfig::FORMAT_MESSAGE
+ property :public_transportation_option_url, String, :required => false, :format => /#{VenueConfig::URL_PATTERN}/, :length => 255, :message => VenueConfig::FORMAT_MESSAGE
  
   #property :board_id, Integer, :required => true
   #property :locale_id, Integer, :required => true

@@ -1,9 +1,13 @@
 class ListingsController < ApplicationController
 
+  include Ixtlan::Controllers::SearchQuery
+
+  cache_headers :private
+
   # GET /listings
   # GET /listings.xml
   def index
-    @listings = Listing.all()
+    @listings = query(Listing, :name, :email)
 
     respond_to do |format|
       format.html
