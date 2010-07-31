@@ -21,11 +21,12 @@ class Contact
 
   def valid?
     validate
-    @my_errors.size == 0
+    errors.size == 0
   end
 
   def errors
-    validate
+#    validate
+    @my_errors ||= {}
     def @my_errors.invalid?(attr)
       self[attr.to_sym] || false
     end
@@ -39,10 +40,10 @@ class Contact
   end
   
   def validate
-    @my_errors = {}
+    errors
     @my_errors[:listing] = "listing cannot be blank" if (@my_listing == nil && @my_listing_id == nil)
     @my_errors[:name] = "Please fill in a valid name" if (name =~ /^[^<'&">]*$/).nil? || name.blank?
-    @my_errors[:phone] = "Please fill in a valid phone number" if !phone.nil? && (phone =~ /^[-0-9() +]+$/).nil?
+    @my_errors[:phone] = "Please fill in a valid phone number" if !phone.blank? && (phone =~ /^[-0-9() +]+$/).nil?
     @my_errors[:email] = "Please fill in a valid email address" unless self.email =~ /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   end
 
