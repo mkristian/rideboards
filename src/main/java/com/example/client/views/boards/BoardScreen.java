@@ -30,7 +30,10 @@ public class BoardScreen extends ResourceScreen<Board> {
         }
 
         public void reset(final Board resource) {
-            reset(resource, resource.updatedAt, resource.updatedBy);
+            reset(resource.createdAt,
+                  resource.createdBy,
+                  resource.updatedAt,
+                  resource.updatedBy);
         }
     }
 

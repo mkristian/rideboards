@@ -30,7 +30,7 @@ public class ListingScreen extends ResourceScreen<Listing> {
         }
 
         public void reset(final Listing resource) {
-            reset(resource, resource.updatedAt, null);
+            reset(resource.updatedAt, null);
         }
     }
 

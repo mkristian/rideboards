@@ -22,14 +22,18 @@ import de.saumya.gwt.translation.common.client.widget.ResourceScreen;
 
 public class VenueConfigScreen extends ResourceScreen<VenueConfig> {
 
-    private static class VenueConfigHeaders extends ResourceHeaderPanel<VenueConfig> {
+    private static class VenueConfigHeaders extends
+            ResourceHeaderPanel<VenueConfig> {
 
         public VenueConfigHeaders(final GetTextController getTextController) {
             super(getTextController);
         }
 
         public void reset(final VenueConfig resource) {
-            reset(resource, resource.updatedAt, resource.updatedBy);
+            reset(resource.createdAt,
+                  resource.createdBy,
+                  resource.updatedAt,
+                  resource.updatedBy);
         }
     }
 
@@ -42,8 +46,8 @@ public class VenueConfigScreen extends ResourceScreen<VenueConfig> {
         super(loadingNotice,
                 factory,
                 session,
-               new ResourcePanel<VenueConfig>(new VenueConfigHeaders(getTextController),
-                       new VenueConfigFields(getTextController, bindings)),
+                new ResourcePanel<VenueConfig>(new VenueConfigHeaders(getTextController),
+                        new VenueConfigFields(getTextController, bindings)),
                 new ResourceCollectionPanel<VenueConfig>(loadingNotice,
                         new ResourceCollectionNavigation<VenueConfig>(loadingNotice,
                                 factory,

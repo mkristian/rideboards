@@ -11,7 +11,7 @@ import de.saumya.gwt.persistence.client.ResourceFactory;
  */
 public class BoardTestGwt extends AbstractApplicationResourceTestGwt<Board> {
 
-        private Board resource;
+    private Board               resource;
 
     private static final String RESOURCE_XML = "<board>"
                                                      + "<id>1</id>"
@@ -19,13 +19,17 @@ public class BoardTestGwt extends AbstractApplicationResourceTestGwt<Board> {
                                                      + "<fullname>first valule of fullname</fullname>"
                                                      + "<position>1</position>"
                                                      + "<enabled>false</enabled>"
+                                                     + "<listings></listings>"
                                                      + "<created_at>2009-07-09 17:14:48.0</created_at>"
                                                      + "<updated_at>2009-07-09 17:14:48.0</updated_at>"
                                                      + "</board>";
 
     @Override
     protected String resourceNewXml() {
-        return RESOURCE_XML.replaceFirst("<created_at>[0-9-:. ]*</created_at>", "").replaceFirst("<updated_at>[0-9-:. ]*</updated_at>", "").replace("<id>1</id>", "");
+        return RESOURCE_XML.replaceFirst("<created_at>[0-9-:. ]*</created_at>",
+                                         "")
+                .replaceFirst("<updated_at>[0-9-:. ]*</updated_at>", "")
+                .replace("<id>1</id>", "");
     }
 
     @Override
@@ -46,7 +50,9 @@ public class BoardTestGwt extends AbstractApplicationResourceTestGwt<Board> {
     @Override
     protected ResourceFactory<Board> factorySetUp() {
         return new BoardFactory(this.repository,
-         this.notifications, this.userFactory);
+                this.notifications,
+                this.userFactory,
+                new ListingFactory(this.repository, this.notifications));
     }
 
     @Override
@@ -54,10 +60,10 @@ public class BoardTestGwt extends AbstractApplicationResourceTestGwt<Board> {
         this.resource = this.factory.newResource(idValue());
 
         this.resource.id = 1;
-				  this.resource.name = "first valule of name";
-				  this.resource.fullname = "first valule of fullname";
-				  this.resource.position = 1;
-				  this.resource.enabled = false;
+        this.resource.name = "first valule of name";
+        this.resource.fullname = "first valule of fullname";
+        this.resource.position = 1;
+        this.resource.enabled = false;
 
         this.repository.addXmlResponse(RESOURCE_XML);
 
@@ -84,6 +90,7 @@ public class BoardTestGwt extends AbstractApplicationResourceTestGwt<Board> {
                                             + "<fullname>first valule of fullname</fullname>"
                                             + "<position>1</position>"
                                             + "<enabled>false</enabled>"
+                                            + "<listings></listings>"
                                             + "<created_at>2009-07-09 17:14:48.0</created_at>"
                                             + "<updated_at>2007-07-09 17:14:48.0</updated_at>"
                                             + "</board>";

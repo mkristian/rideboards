@@ -139,11 +139,6 @@
       <type>gem</type>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>de.saumya.webfortune</groupId>
-      <artifactId>dhammapada</artifactId>
-      <version>0.3-SNAPSHOT</version>
-    </dependency>
   </dependencies>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

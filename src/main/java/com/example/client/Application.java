@@ -90,5 +90,7 @@ public class Application implements EntryPoint {
                 container.listeners,
                 container.hyperlinkFactory);
         screenController.addScreen(venueScreen, "venues");
+
+        screenController.dispatchDefault();
     }
 }

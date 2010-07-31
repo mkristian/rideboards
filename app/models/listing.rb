@@ -24,8 +24,20 @@ class Listing
   require 'dm-serializer'
   alias :to_x :to_xml_document
   def to_xml_document(opts = {}, doc = nil)
+    opts.merge!({ :skip_types => true,
+                  :skip_empty_tags => true
+                })
     unless(opts[:methods])
-      opts.merge!({:methods => [:board], :board => {:methods => [], :exclude => [:created_at, :updated_at]}})
+      opts.merge!({ :methods => [:board],
+                    :board => {
+                      :methods => [:listings],
+                      :listings => {
+                        :methods => [],
+                        :exclude => [:password, :board_id, :created_at, :updated_at, :driver, :ridedate, :name, :email, :location]
+                      },
+                      :exclude => [:created_at, :updated_at]
+                    }
+                  })
     end
     unless(opts[:exclude])
       opts.merge!({:exclude => [:password, :board_id]})

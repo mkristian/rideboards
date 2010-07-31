@@ -22,14 +22,18 @@ import de.saumya.gwt.translation.common.client.widget.ResourceScreen;
 
 public class BoardConfigScreen extends ResourceScreen<BoardConfig> {
 
-    private static class BoardConfigHeaders extends ResourceHeaderPanel<BoardConfig> {
+    private static class BoardConfigHeaders extends
+            ResourceHeaderPanel<BoardConfig> {
 
         public BoardConfigHeaders(final GetTextController getTextController) {
             super(getTextController);
         }
 
         public void reset(final BoardConfig resource) {
-            reset(resource, resource.updatedAt, resource.updatedBy);
+            reset(resource.createdAt,
+                  resource.createdBy,
+                  resource.updatedAt,
+                  resource.updatedBy);
         }
     }
 
@@ -42,8 +46,8 @@ public class BoardConfigScreen extends ResourceScreen<BoardConfig> {
         super(loadingNotice,
                 factory,
                 session,
-               new ResourcePanel<BoardConfig>(new BoardConfigHeaders(getTextController),
-                       new BoardConfigFields(getTextController, bindings)),
+                new ResourcePanel<BoardConfig>(new BoardConfigHeaders(getTextController),
+                        new BoardConfigFields(getTextController, bindings)),
                 new ResourceCollectionPanel<BoardConfig>(loadingNotice,
                         new ResourceCollectionNavigation<BoardConfig>(loadingNotice,
                                 factory,

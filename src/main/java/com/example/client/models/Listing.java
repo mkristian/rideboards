@@ -44,14 +44,20 @@ public class Listing extends Resource<Listing> {
 
     @Override
     protected void fromElement(final Element root) {
-        this.location = getString(root, "location");
-        this.email = getString(root, "email");
-        this.name = getString(root, "name");
-        this.ridedate = getDate(root, "ridedate");
-        this.driver = getBoolean(root, "driver");
-        this.board = this.boardFactory.getChildResource(root, "board");
-        this.createdAt = getTimestamp(root, "created_at");
-        this.updatedAt = getTimestamp(root, "updated_at");
+        // allow empty listings which do NOT override existing data
+        // location is a required field so if not present just do not
+        // override anything - i.e. assume id only content
+        final String location = getString(root, "location");
+        if (location != null) {
+            this.location = location;
+            this.email = getString(root, "email");
+            this.name = getString(root, "name");
+            this.ridedate = getDate(root, "ridedate");
+            this.driver = getBoolean(root, "driver");
+            this.board = this.boardFactory.getChildResource(root, "board");
+            this.createdAt = getTimestamp(root, "created_at");
+            this.updatedAt = getTimestamp(root, "updated_at");
+        }
     }
 
     @Override

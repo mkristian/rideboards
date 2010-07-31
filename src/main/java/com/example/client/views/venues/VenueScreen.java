@@ -29,7 +29,10 @@ public class VenueScreen extends ResourceScreen<Venue> {
         }
 
         public void reset(final Venue resource) {
-            reset(resource, resource.updatedAt, resource.updatedBy);
+            reset(resource.createdAt,
+                  resource.createdBy,
+                  resource.updatedAt,
+                  resource.updatedBy);
         }
     }
 
@@ -42,8 +45,8 @@ public class VenueScreen extends ResourceScreen<Venue> {
         super(loadingNotice,
                 factory,
                 session,
-               new ResourcePanel<Venue>(new VenueHeaders(getTextController),
-                       new VenueFields(getTextController, bindings)),
+                new ResourcePanel<Venue>(new VenueHeaders(getTextController),
+                        new VenueFields(getTextController, bindings)),
                 new ResourceCollectionPanel<Venue>(loadingNotice,
                         new ResourceCollectionNavigation<Venue>(loadingNotice,
                                 factory,

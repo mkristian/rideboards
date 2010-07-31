@@ -20,10 +20,16 @@ class Board
     alias :to_x :to_xml_document
     def to_xml_document(opts = {}, doc = nil)
       unless(opts[:methods])
-        opts.merge!({:methods => [:updated_by, :listings], :updated_by => {:methods => [], :exclude => [:created_at, :updated_at, :hashed_password, :language]}, :listings =>{ :exclude => [:created_at, :updated_at, :password, :board_id], :methods => []}})
+        opts.merge!({
+                      :methods => [:created_by, :updated_by, :listings],
+                      :listings =>{
+                        :exclude => [:created_at, :updated_at, :password, :board_id],
+                        :methods => []
+                      }
+                    })
       end
       unless(opts[:exclude])
-        opts.merge!({:exclude => [:updated_by_id]})
+        opts.merge!({:exclude => [:created_by_id, :updated_by_id]})
       end
       to_x(opts, doc)
     end
