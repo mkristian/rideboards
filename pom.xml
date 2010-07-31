@@ -5,8 +5,8 @@
   <artifactId>rideboards</artifactId>
   <packaging>war</packaging>
   <version>0.1.0-SNAPSHOT</version>
-  <name>rails2 skeleton rideboards</name>
-
+  <name>rideboards</name>
+  
   <repositories>
     <!--
 	the source for the gem artifacts
@@ -16,25 +16,8 @@
       <url>http://gems.saumya.de/releases</url>
     </repository>
   </repositories>
-
+ 
   <dependencies>
-    <!--
-	this is a version which works properly with having
-	rails gems in WEB-INF/gems
-    -->
-    <dependency>
-      <groupId>org.jruby.rack</groupId>
-      <artifactId>jruby-rack</artifactId>
-      <version>1.0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jruby</groupId>
-      <artifactId>jruby-complete</artifactId>
-      <version>1.5.1</version>
-    </dependency>
-    <!--
-	gem dependencies
-    -->
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>rails</artifactId>
@@ -42,121 +25,139 @@
       <type>gem</type>
     </dependency>
     <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-user</artifactId>
-            <version>1.7.1</version>
-            <scope>provided</scope>
-        </dependency>
+      <groupId>org.jruby</groupId>
+      <artifactId>jruby-complete</artifactId>
+      <version>1.5.1</version>
+    </dependency>
     <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-servlet</artifactId>
-            <version>1.7.1</version>
-            <scope>runtime</scope>
-        </dependency>
+      <groupId>org.jruby.rack</groupId>
+      <artifactId>jruby-rack</artifactId>
+      <version>1.0.1</version>
+    </dependency>
     <dependency>
-            <groupId>de.saumya.gwt</groupId>
-            <artifactId>session</artifactId>
-            <version>0.5.0-SNAPSHOT</version>
-            <classifier>tests</classifier>
-            <scope>test</scope>
-        </dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+      <version>${gwt.version}</version>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.2</version>
-            <scope>test</scope>
-        </dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-servlet</artifactId>
+      <version>${gwt.version}</version>
+      <scope>runtime</scope>
+    </dependency>
     <dependency>
-            <groupId>de.saumya.gwt.translation</groupId>
-            <artifactId>gui</artifactId>
-            <version>0.5.0-SNAPSHOT</version>
-        </dependency>
+      <groupId>de.saumya.gwt</groupId>
+      <artifactId>session</artifactId>
+      <version>${restful.gwt.version}</version>
+      <classifier>tests</classifier>
+      <scope>test</scope>
+    </dependency>
     <dependency>
-            <groupId>de.saumya.gwt</groupId>
-            <artifactId>persistence</artifactId>
-            <version>0.5.0-SNAPSHOT</version>
-            <classifier>tests</classifier>
-            <scope>test</scope>
-        </dependency>
-  <dependency>
-<groupId>rubygems</groupId>
-<artifactId>rack</artifactId>
-<version>1.0.1</version>
-<type>gem</type>
-</dependency>
-<dependency>
-<groupId>rubygems</groupId>
-<artifactId>ixtlan</artifactId>
-<version>0.4.0.pre6</version>
-<type>gem</type>
-</dependency>
-<dependency>
-<groupId>rubygems</groupId>
-<artifactId>dm-sqlite-adapter</artifactId>
-<version>1.0.0</version>
-<type>gem</type>
-</dependency>
-<dependency>
-<groupId>rubygems</groupId>
-<artifactId>dm-validations</artifactId>
-<version>1.0.0</version>
-<type>gem</type>
-</dependency>
-<dependency>
-<groupId>rubygems</groupId>
-<artifactId>dm-timestamps</artifactId>
-<version>1.0.0</version>
-<type>gem</type>
-</dependency>
-<dependency>
-<groupId>rubygems</groupId>
-<artifactId>dm-migrations</artifactId>
-<version>1.0.0</version>
-<type>gem</type>
-</dependency>
-<dependency>
-<groupId>rubygems</groupId>
-<artifactId>dm-aggregates</artifactId>
-<version>1.0.0</version>
-<type>gem</type>
-</dependency>
-<dependency>
-<groupId>rubygems</groupId>
-<artifactId>dm-transactions</artifactId>
-<version>1.0.0</version>
-<type>gem</type>
-</dependency>
-<dependency>
-<groupId>rubygems</groupId>
-<artifactId>dm-core</artifactId>
-<version>1.0.0</version>
-<type>gem</type>
-</dependency>
-<dependency>
-<groupId>rubygems</groupId>
-<artifactId>rspec</artifactId>
-<version>[1.3.0,1.4.0]</version>
-<type>gem</type>
-<scope>test</scope>
-</dependency>
-<dependency>
-<groupId>rubygems</groupId>
-<artifactId>rspec-rails</artifactId>
-<version>1.3.2</version>
-<type>gem</type>
-<scope>test</scope>
-</dependency>
-</dependencies>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>de.saumya.gwt.translation</groupId>
+      <artifactId>gui</artifactId>
+      <version>${restful.gwt.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>de.saumya.gwt</groupId>
+      <artifactId>persistence</artifactId>
+      <version>${restful.gwt.version}</version>
+      <classifier>tests</classifier>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>rack</artifactId>
+      <version>1.0.1</version>
+      <type>gem</type>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>ixtlan</artifactId>
+      <version>0.4.0</version>
+      <type>gem</type>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>dm-sqlite-adapter</artifactId>
+      <version>${dm.version}</version>
+      <type>gem</type>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>dm-validations</artifactId>
+      <version>${dm.version}</version>
+      <type>gem</type>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>dm-timestamps</artifactId>
+      <version>${dm.version}</version>
+      <type>gem</type>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>dm-migrations</artifactId>
+      <version>${dm.version}</version>
+      <type>gem</type>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>dm-aggregates</artifactId>
+      <version>${dm.version}</version>
+      <type>gem</type>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>dm-transactions</artifactId>
+      <version>${dm.version}</version>
+      <type>gem</type>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>dm-core</artifactId>
+      <version>${dm.version}</version>
+      <type>gem</type>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>rspec</artifactId>
+      <version>[1.3.0,1.4.0]</version>
+      <type>gem</type>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>rspec-rails</artifactId>
+      <version>1.3.2</version>
+      <type>gem</type>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>de.saumya.webfortune</groupId>
+      <artifactId>dhammapada</artifactId>
+      <version>0.3-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jruby.plugins.version>0.20.0-SNAPSHOT</jruby.plugins.version>
+    <jruby.plugins.version>0.20.0</jruby.plugins.version>
+    <dm.version>1.0.0</dm.version>
+    <gwt.version>1.7.1</gwt.version>
+    <restful.gwt.version>0.5.0-SNAPSHOT</restful.gwt.version>
   </properties>
   <build>
     <outputDirectory>war/WEB-INF/classes</outputDirectory>
     <plugins>
       <!--
 	  this plugin gives you basic jruby related goals. overview:
-	   mvn ruby:help
+	  mvn ruby:help
       -->
       <plugin>
         <groupId>de.saumya.mojo</groupId>
@@ -166,7 +167,7 @@
       <!--
 	  this plugin gives you basic rubygems related goals and manages
 	  the gems for maven. overview:
-	   mvn gem:help
+	  mvn gem:help
       -->
       <plugin>
         <groupId>de.saumya.mojo</groupId>
@@ -189,14 +190,12 @@
         <groupId>de.saumya.mojo</groupId>
         <artifactId>rspec-maven-plugin</artifactId>
         <version>${jruby.plugins.version}</version>
-
 	<executions>
 	  <execution>
 	    <phase>test</phase>
 	    <goals><goal>test</goal></goals>
 	  </execution>
 	</executions>
-
       </plugin>
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
@@ -210,24 +209,16 @@
               <directory>.</directory>
               <targetPath>WEB-INF</targetPath>
               <includes>
-                <include>Gemfile</include>
                 <include>app/**</include>
                 <include>config/**</include>
                 <include>lib/**</include>
-                <include>vendor/**</include>
-  <!--
-      this might be not a good idea for production but for
-      testing this should be OK. anyways it will not work when
-      running the application from a packed war file
-  -->
-                <include>db/*sqlite3</include>
               </includes>
             </resource>
-     <!--
-	 if you freeze your rails and unpack your gems you need to
-	 comment/remove the next section to avoid ending up with
-	 two sets of gems inside the war file
-     -->
+	    <!--
+		if you freeze your rails and unpack your gems you need to
+		comment/remove the next section to avoid ending up with
+		two sets of gems inside the war file
+	    -->
             <resource>
               <directory>${project.build.directory}/rubygems</directory>
               <targetPath>WEB-INF/gems</targetPath>
@@ -272,5 +263,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>

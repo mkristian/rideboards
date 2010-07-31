@@ -17,21 +17,13 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :locales
 
-  map.resources :locales
-
   map.resources :word_bundles
 
   map.resources :phrases
 
   map.resources :domains
 
-  map.resources :domains
-
   map.resources :groups
-
-  map.resources :groups
-
-  map.resources :users
 
   map.resources :users
 
