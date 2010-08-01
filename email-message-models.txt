@@ -1,0 +1,17 @@
+thread :
+  subject:text
+
+message :
+  thread: thread
+  owner: user
+  message: text
+  position: integer
+
+thread_user:
+  thread: thread
+  user: user
+
+message_user:
+  message: message
+  user: user
+  unread: boolean

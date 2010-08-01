@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.example</groupId>
-  <artifactId>rideboards</artifactId>
+  <groupId>org.dhamma.ridesboard</groupId>
+  <artifactId>ridesboard</artifactId>
   <packaging>war</packaging>
   <version>0.1.0-SNAPSHOT</version>
   <name>rideboards</name>
+  <url>http://github.com/dhammaDotOrg/Rides-Board</url>
   
   <repositories>
-    <!--
-	the source for the gem artifacts
-    -->
+    <!-- source for the gem artifacts -->
     <repository>
       <id>rubygems-releases</id>
       <url>http://gems.saumya.de/releases</url>
@@ -148,39 +147,20 @@
     <restful.gwt.version>0.5.0-SNAPSHOT</restful.gwt.version>
   </properties>
   <build>
+    <!-- allow the gwt plugin to work with this pom -->
     <outputDirectory>war/WEB-INF/classes</outputDirectory>
     <plugins>
-      <!--
-	  this plugin gives you basic jruby related goals. overview:
-	  mvn ruby:help
-      -->
-      <plugin>
-        <groupId>de.saumya.mojo</groupId>
-        <artifactId>jruby-maven-plugin</artifactId>
-        <version>${jruby.plugins.version}</version>
-      </plugin>
-      <!--
-	  this plugin gives you basic rubygems related goals and manages
-	  the gems for maven. overview:
-	  mvn gem:help
-      -->
       <plugin>
         <groupId>de.saumya.mojo</groupId>
         <artifactId>gem-maven-plugin</artifactId>
         <version>${jruby.plugins.version}</version>
         <extensions>true</extensions>
       </plugin>
-      <!--
-	  this plugin has some rails specific goals.
-      -->
       <plugin>
         <groupId>de.saumya.mojo</groupId>
         <artifactId>rails2-maven-plugin</artifactId>
         <version>${jruby.plugins.version}</version>
       </plugin>
-      <!--
-	  this plugin has some rspec specific goals.
-      -->
       <plugin>
         <groupId>de.saumya.mojo</groupId>
         <artifactId>rspec-maven-plugin</artifactId>
@@ -209,11 +189,6 @@
                 <include>lib/**</include>
               </includes>
             </resource>
-	    <!--
-		if you freeze your rails and unpack your gems you need to
-		comment/remove the next section to avoid ending up with
-		two sets of gems inside the war file
-	    -->
             <resource>
               <directory>${project.build.directory}/rubygems</directory>
               <targetPath>WEB-INF/gems</targetPath>
@@ -234,12 +209,6 @@
 	  <execution>
 	    <goals>
 	      <goal>compile</goal>
-	    </goals>
-	  </execution>
-	  <execution>
-	    <id>test</id>
-	    <phase>test</phase>
-	    <goals>
 	      <goal>test</goal>
 	    </goals>
 	  </execution>

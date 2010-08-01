@@ -91,6 +91,6 @@ public class Application implements EntryPoint {
                 container.hyperlinkFactory);
         screenController.addScreen(venueScreen, "venues");
 
-        screenController.dispatchDefault();
+        screenController.redirectDefault();
     }
 }
